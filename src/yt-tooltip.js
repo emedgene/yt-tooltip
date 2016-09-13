@@ -72,7 +72,7 @@
           var isBottom = aAttrs.tooltipSide && aAttrs.tooltipSide === 'bottom';
           var ele = aElement[0];
           var tooltipText = aAttrs.tooltipText;
-          var tooltipHtml = htmlWrap(aAttrs.tooltipHtml);
+          var tooltipHtml = htmlWrap(aAttrs.tooltipHtml.replace("}<!>}", "}}"));
           if (tooltipHtml) {
             tooltipHtml = $compile(tooltipHtml)(scope.$parent || scope);
           }
@@ -86,7 +86,7 @@
           // add event
           ele.addEventListener('mouseenter', mouseenterHandler, false);
           ele.addEventListener('mouseleave', mouseleaveHandler, false);
-          
+
           // destory
           scope.$on("$destory", function () {
             ele.removeEventListener('mouseenter', mouseenterHandler);
@@ -131,7 +131,7 @@
     }]);
 
 
-/* ======================================== 
+/* ========================================
   FUNCTIONS
   ======================================== */
 function ajustTooltipStyle (tooltipElement, variations) {
@@ -149,8 +149,8 @@ function ajustTooltipStyleBottom (tEle, tooltipEle) {
   // var tooltipBox = getElementBox(tooltipEle);
   var eleBox = getElementBox(tEle);
 
-  var paddingSide = 6; 
-  var arrowHeight = 7; 
+  var paddingSide = 6;
+  var arrowHeight = 7;
 
   ajustTooltipStyle(tooltipEle, {
     left: off.left + eleBox.width / 2 + 'px',
@@ -169,8 +169,8 @@ function ajustTooltipStyleDefault (tEle, tooltipEle) {
   var tooltipBox = getElementBox(tooltipEle);
   var eleBox = getElementBox(tEle);
 
-  var paddingSide = 3; 
-  var arrowHeight = 7; 
+  var paddingSide = 3;
+  var arrowHeight = 7;
 
   // change tooltip style
   ajustTooltipStyle(tooltipEle, {
